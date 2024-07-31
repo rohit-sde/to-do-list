@@ -7,6 +7,11 @@
   border-radius: 10px;
 }
 
+.header h3 {
+  color: aliceblue;
+  padding: 50px 90px;
+}
+
 .header {
   width: 380px;
   height: 200px;
@@ -18,11 +23,64 @@
 }
 
 .clear {
-  width: 30px;
-  height: 30px;
+  height: 34px;
+  padding: 16px;
+  font-size: small;
   position: absolute;
+  background-color: rgb(0, 0, 0, 0.15);
+  border: 1px solid rgb(127, 121, 121);
+  border-radius: 20px 0px 0px 20px;
+  left: 20px;
+  right: 49px;
+  bottom: 15px;
+}
+
+.clear:focus {
+  outline: none;
+  border: 1px solid rgb(113, 138, 251);
+}
+
+.addButton {
+  display: inline-block;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.15);
+  border-radius: 0px 20px 20px 0px;
+  border: 1px solid white;
+  /* color: aliceblue; */
   right: 20px;
-  bottom: 20px;
+  bottom: 15px;
+  height: 34px;
+  width: 30px;
+  border: 1px solid white;
+}
+
+.addButton:hover {
+  background-color: rgb(255, 234, 0);
+  border-color: rgb(226, 92, 43);
+  border: 3px;
+}
+.todoList {
+  border: 3px dotted blue;
+  min-height: 80px;
+}
+.todoText {
+  margin-left: 9px;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+.todos {
+  /* border: 2px solid rgb(145, 143, 143); */
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  height: fit-content;
+  margin: 9px;
+  padding: 9px;
+  border-radius: 5px;
+}
+
+.todos:hover {
+  background-color: rgb(218, 214, 214);
 }
 
 /* ------------ youtube.com/CodeExplained ------------
