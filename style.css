@@ -13,7 +13,7 @@
 }
 
 .header {
-  width: 380px;
+  width: 377px;
   height: 200px;
   background-image: url("./bg2.jpg");
   background-size: 100% 200%;
@@ -26,6 +26,7 @@
   height: 34px;
   padding: 16px;
   font-size: small;
+  color: rgb(154, 199, 238);
   position: absolute;
   background-color: rgb(0, 0, 0, 0.15);
   border: 1px solid rgb(127, 121, 121);
@@ -55,19 +56,27 @@
 }
 
 .addButton:hover {
+  cursor: pointer;
   background-color: rgb(255, 234, 0);
   border-color: rgb(226, 92, 43);
   border: 3px;
 }
 .todoList {
-  border: 3px dotted blue;
+  border: 1px solid rgb(230, 230, 231);
   min-height: 80px;
+  box-shadow: 0px 1px 5px #a6a5a5;
 }
 .todoText {
   margin-left: 9px;
   margin-bottom: 0px;
   display: inline-block;
 }
+
+#editTodo {
+  margin-left: 119px;
+  margin-right: 5px;
+}
+
 .todos {
   /* border: 2px solid rgb(145, 143, 143); */
   display: flex;
@@ -80,6 +89,7 @@
 }
 
 .todos:hover {
+  cursor: pointer;
   background-color: rgb(218, 214, 214);
 }
 
