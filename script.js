@@ -49,20 +49,17 @@ function submitTodo() {
   }
 }
 
-function renderTodos() {
-  // console.log(todos);
-  // console.log(todosList);
+function renderTodos(order) {
   todosList.innerHTML = "";
-
   todos.forEach((todo, index) => {
     todosList.innerHTML += `<div class="todos" id=${index}>
-          <i
-           class="bi ${todo.checked ? "bi-check-circle-fill" : "bi-circle"}"
-           style="color: ${todo.color}" data-action='check'>(checked)</i>
-          <p class="todoText">${todo.value}</p>
-          <i class="bi bi-pencil-square" id="editTodo" data-action='edit'>(edit) </i>
-          <i class="bi bi-trash3" id="trashTodo" data-action='delete'>(trash)</i>
-        </div>`;
+      <i
+      class="bi ${todo.checked ? "bi-check-circle-fill" : "bi-circle"}"
+      style="color: ${todo.color}" data-action='check'>(checked)</i>
+      <p class="todoText">${todo.value}</p>
+      <i class="bi bi-pencil-square" id="editTodo" data-action='edit'>(edit) </i>
+      <i class="bi bi-trash3" id="trashTodo" data-action='delete'>(trash)</i>
+      </div>`;
   });
 }
 
@@ -87,10 +84,13 @@ todosList.addEventListener("click", (event) => {
 // Check A Todo
 
 function checkTodo(todoId) {
-  let newArr = todos.map((todo, index) => {
-    ({
-      ...todo,
-      checked: index === todoId ? !todo.checked : todo.checked,
-    });
-  });
+  console.log(todos);
+  todos = todos.map((todo, index) => ({
+    ...todo,
+    checked: index === todoId ? !todo.checked : todo.checked,
+  }));
+
+  console.log(todos);
+
+  renderTodos();
 }
