@@ -83,3 +83,14 @@ todosList.addEventListener("click", (event) => {
   action === "delete" && checkTodo(todoId);
   // console.log(todoId);
 });
+
+// Check A Todo
+
+function checkTodo(todoId) {
+  let newArr = todos.map((todo, index) => {
+    ({
+      ...todo,
+      checked: index === todoId ? !todo.checked : todo.checked,
+    });
+  });
+}
