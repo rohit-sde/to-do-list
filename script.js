@@ -1,11 +1,12 @@
 const form = document.getElementById("todoForm");
-const newTodo = document.getElementById("newTodo");
+const newTodoInput = document.getElementById("newTodoInput");
 const todosList = document.getElementById("todosList");
 
 // Define hex characters for color generation
 const hexCharacters = "0123456789ABCDEF";
 
 let todos = [];
+let EditTodoId = -1;
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -15,7 +16,7 @@ form.addEventListener("submit", function (event) {
 });
 
 function submitTodo() {
-  const todoValue = newTodo.value;
+  const todoValue = newTodoInput.value;
   // checking todoValue is empty or not
   const emptyTodo = todoValue === "";
   // for checking todo is same or not
@@ -28,24 +29,31 @@ function submitTodo() {
   } else if (isDuplicate) {
     alert("--- This Todo is already excited ---");
   } else {
-    // Generate a random hex color code
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += hexCharacters[Math.floor(Math.random() * hexCharacters.length)];
+    if (EditTodoId >= 0) {
+      todos = todos.map((todo, index) => ({
+        ...todos,
+        value: index === EditTodoId ? todoValue : todo.value,
+      }));
+      EditTodoId = -1;
+    } else {
+      // Generate a random hex color code
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color +=
+          hexCharacters[Math.floor(Math.random() * hexCharacters.length)];
+      }
+      // console.log(todo);
+
+      todos.push({
+        value: todoValue,
+        checked: false,
+        color: color,
+      });
+      // console.log(todos);
     }
 
-    const todo = {
-      value: todoValue,
-      checked: false,
-      color: color,
-    };
-    console.log(todo);
-
-    todos.push(todo);
-    console.log(todos);
-
     // Clear the input field after adding the todo
-    newTodo.value = "";
+    newTodoInput.value = "";
   }
 }
 
@@ -76,8 +84,8 @@ todosList.addEventListener("click", (event) => {
   const action = target.dataset.action;
 
   action === "check" && checkTodo(todoId);
-  action === "edit" && checkTodo(todoId);
-  action === "delete" && checkTodo(todoId);
+  action === "edit" && editTodo(todoId);
+  action === "delete" && deleteTodo(todoId);
   // console.log(todoId);
 });
 
@@ -93,4 +101,13 @@ function checkTodo(todoId) {
   console.log(todos);
 
   renderTodos();
+}
+
+// Edit a todo
+
+function editTodo(todoId) {
+  // console.log(todos[todoId].value);
+  newTodoInput.value = todos[todoId].value;
+  // console.log(newTodoInput.values);
+  EditTodoId = todoId;
 }
