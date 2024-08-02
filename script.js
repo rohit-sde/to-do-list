@@ -58,10 +58,10 @@ function renderTodos() {
     todosList.innerHTML += `<div class="todos" id=${index}>
           <i
            class="bi ${todo.checked ? "bi-check-circle-fill" : "bi-circle"}"
-           style="color: ${todo.color}">(checked)</i>
+           style="color: ${todo.color}" data-action='check'>(checked)</i>
           <p class="todoText">${todo.value}</p>
-          <i class="bi bi-pencil-square" id="editTodo">(edit) </i>
-          <i class="bi bi-trash3" id="trashTodo">(trash)</i>
+          <i class="bi bi-pencil-square" id="editTodo" data-action='edit'>(edit) </i>
+          <i class="bi bi-trash3" id="trashTodo" data-action='delete'>(trash)</i>
         </div>`;
   });
 }
@@ -72,9 +72,14 @@ todosList.addEventListener("click", (event) => {
   const target = event.target;
   const parentElement = target.parentNode;
   if (parentElement.className !== "todos") return;
-
+  //todo id
   const todo = parentElement;
   const todoId = Number(todo.id);
+  // target action
+  const action = target.dataset.action;
 
-  console.log(todoId);
+  action === "check" && checkTodo(todoId);
+  action === "edit" && checkTodo(todoId);
+  action === "delete" && checkTodo(todoId);
+  // console.log(todoId);
 });
