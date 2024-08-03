@@ -1,6 +1,7 @@
 const form = document.getElementById("todoForm");
 const newTodoInput = document.getElementById("newTodoInput");
 const todosList = document.getElementById("todosList");
+const notification = document.querySelector(".notification");
 
 // Define hex characters for color generation
 const hexCharacters = "0123456789ABCDEF";
@@ -25,9 +26,9 @@ function submitTodo() {
   );
 
   if (emptyTodo) {
-    alert("--- Do not you are able to submit empty input ---");
+    notificationFunc("--- Do not you are able to submit empty input ---");
   } else if (isDuplicate) {
-    alert("--- This Todo is already excited ---");
+    notificationFunc("--- This Todo is already excited ---");
   } else {
     if (EditTodoId >= 0) {
       todos = todos.map((todo, index) => ({
@@ -61,13 +62,13 @@ function renderTodos(order) {
   todosList.innerHTML = "";
   todos.forEach((todo, index) => {
     todosList.innerHTML += `<div class="todos" id=${index}>
-      <i
-      class="bi ${todo.checked ? "bi-check-circle-fill" : "bi-circle"}"
-      style="color: ${todo.color}" data-action='check'>(checked)</i>
-      <p class="todoText">${todo.value}</p>
-      <i class="bi bi-pencil-square" id="editTodo" data-action='edit'>(edit) </i>
-      <i class="bi bi-trash3" id="trashTodo" data-action='delete'>(trash)</i>
-      </div>`;
+    <i
+    class="bi ${todo.checked ? "bi-check-circle-fill" : "bi-circle"}"
+    style="color: ${todo.color}" data-action='check'>(checked)</i>
+    <p class="todoText">${todo.value}</p>
+    <i class="bi bi-pencil-square" id="editTodo" data-action='edit'>(edit) </i>
+    <i class="bi bi-trash3" id="trashTodo" data-action='delete'>(trash)</i>
+    </div>`;
   });
 }
 
@@ -110,4 +111,23 @@ function editTodo(todoId) {
   newTodoInput.value = todos[todoId].value;
   // console.log(newTodoInput.values);
   EditTodoId = todoId;
+}
+
+// Delete function
+
+function deleteTodo(todoId) {
+  todos = todos.filter((todo, index) => index !== todoId);
+  EditTodoId = -1;
+
+  renderTodos();
+}
+
+// notification
+
+function notificationFunc(msg) {
+  notification.innerHTML = msg;
+
+  notification.classList.add("Visible");
+
+  setTimeout(() => notification.classList.remove("Visible"), 2000);
 }
