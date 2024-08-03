@@ -64,10 +64,10 @@ function renderTodos(order) {
     todosList.innerHTML += `<div class="todos" id=${index}>
     <i
     class="bi ${todo.checked ? "bi-check-circle-fill" : "bi-circle"}"
-    style="color: ${todo.color}" data-action='check'>(checked)</i>
+    style="color: ${todo.color}" data-action='check'></i>
     <p class="todoText">${todo.value}</p>
-    <i class="bi bi-pencil-square" id="editTodo" data-action='edit'>(edit) </i>
-    <i class="bi bi-trash3" id="trashTodo" data-action='delete'>(trash)</i>
+    <i class="bi bi-pencil-square" id="editTodo" data-action='edit'></i>
+    <i class="bi bi-trash3" id="trashTodo" data-action='delete'></i>
     </div>`;
   });
 }
